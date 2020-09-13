@@ -19,7 +19,18 @@ public class Celda {
         this.columna = columna;
         this.valor = valor;
     }
-
+    
+    public Celda(int fila, int columna){
+        this.fila = fila;
+        this.columna = columna;
+        this.valor = 0;
+    }
+    
+     public Celda(){
+        this.fila = 0;
+        this.columna = 0;
+        this.valor = 0;
+    }
     /**
      * @return the fila
      */

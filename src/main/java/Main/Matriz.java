@@ -10,9 +10,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Charly
  */
 public class Matriz {
-    int [][] matriz;
-    int fila;
-    int columna; 
+    private int [][] matriz;
+    private int fila;
+    private int columna; 
     
     public Matriz(int filas, int columnas){
         this.matriz = new int[filas][columnas];
@@ -20,17 +20,17 @@ public class Matriz {
     
     
     public void generarValoresRandomColumna(int columna){      
-         for (int i = 0 ; i < this.matriz.length; i++) {
+         for (int i = 0 ; i < this.getMatriz().length; i++) {
              for (int j = columna - 1 ; j < columna; j++) {               
-                    this.matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);                           
+                 this.getMatriz()[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);                           
              }
          }     
     }
     
     public void generarValoresRandomPorFila(int fila){      
          for (int i = fila - 1 ; i < fila ; i++) {
-              for (int j = 0; j < this.matriz[0].length; j++) {             
-                    this.matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);                           
+              for (int j = 0; j < this.getMatriz()[0].length; j++) {             
+                  this.getMatriz()[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);                           
              }
          }     
     }
@@ -42,7 +42,7 @@ public class Matriz {
         int [] tmpColumna1 = obtenerColumna(1);
         int [] tmpColumna2 = obtenerColumna(2);
         for (int i = 0; i < tmpColumna1.length; i++) {
-           resultadoSuma += this.matriz[i][columnaResultado - 1] = tmpColumna1[i] +tmpColumna2[i];
+           resultadoSuma += this.getMatriz()[i][columnaResultado - 1] = tmpColumna1[i] +tmpColumna2[i];
        }
        //------------FIN -> METODO 2 -----------------
        
@@ -59,11 +59,11 @@ public class Matriz {
    }
    
    private int[] obtenerColumna(int columna){
-       int[] tmpcolumna = new int[this.matriz.length];
+       int[] tmpcolumna = new int[this.getMatriz().length];
        
-       for (int i = 0; i < this.matriz.length; i++) {
+       for (int i = 0; i < this.getMatriz().length; i++) {
            for (int j = columna - 1; j < columna; j++) {
-               tmpcolumna[i] = this.matriz[i][j];
+               tmpcolumna[i] = this.getMatriz()[i][j];
            }
        }
        return tmpcolumna;
@@ -71,31 +71,31 @@ public class Matriz {
    
    
    public void agregarFilasAMatriz(int filas){
-       int[][] nuevaMatriz = new int[this.matriz.length + filas][this.matriz[0].length];
-       for (int i = 0; i < this.matriz.length; i++) {
-            for (int j = 0; j < this.matriz[0].length; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];
+       int[][] nuevaMatriz = new int[this.getMatriz().length + filas][this.getMatriz()[0].length];
+       for (int i = 0; i < this.getMatriz().length; i++) {
+            for (int j = 0; j < this.getMatriz()[0].length; j++) {
+                nuevaMatriz[i][j] = getMatriz()[i][j];
             }
         }     
-       this.matriz = nuevaMatriz;
+       this.setMatriz(nuevaMatriz);
    }
    
    public void agregarColumnasAMatriz(int columnas){
-       int[][] nuevaMatriz = new int[this.matriz.length][this.matriz[0].length + columnas];
-       for (int i = 0; i < this.matriz.length; i++) {
-            for (int j = 0; j < this.matriz[0].length; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];
+       int[][] nuevaMatriz = new int[this.getMatriz().length][this.getMatriz()[0].length + columnas];
+       for (int i = 0; i < this.getMatriz().length; i++) {
+            for (int j = 0; j < this.getMatriz()[0].length; j++) {
+                nuevaMatriz[i][j] = getMatriz()[i][j];
             }
         }     
-       this.matriz = nuevaMatriz;
+       this.setMatriz(nuevaMatriz);
    }
    
     public void redimensionarMatriz(int filas, int columnas){
          int[][] nuevaMatriz = new int[filas][columnas];
          
-         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];
+         for (int i = 0; i < getMatriz().length; i++) {
+            for (int j = 0; j < getMatriz()[0].length; j++) {
+                nuevaMatriz[i][j] = getMatriz()[i][j];
             }
         }
         // return nuevaMatriz;
@@ -103,11 +103,11 @@ public class Matriz {
     
     public void imprimirMatriz(String mensaje){
          System.out.println(">>>>>>>>   " +mensaje + "   <<<<<<<<");
-         for (int i = 0; i < this.matriz.length; i++) {
+         for (int i = 0; i < this.getMatriz().length; i++) {
              System.out.print("[");
-            for (int j = 0; j < this.matriz[0].length; j++) {
-                System.out.print(this.matriz[i][j]);
-                if(j < this.matriz[0].length - 1){
+            for (int j = 0; j < this.getMatriz()[0].length; j++) {
+                System.out.print(this.getMatriz()[i][j]);
+                if(j < this.getMatriz()[0].length - 1){
                     System.out.print(",");
                 }else
                 {
@@ -117,4 +117,29 @@ public class Matriz {
             System.out.println("");
         }
      }
+    
+    public Celda obtenerCelda(int fila, int columna){
+        Celda celda = new Celda(fila, columna);
+        celda.setValor(this.matriz[fila][columna]);
+        
+        return celda;
+    }
+    
+    public void copiarCelda(Celda origen, Celda destino){
+        this.matriz[destino.getFila()][destino.getColumna()] = origen.getValor();
+    }
+
+    /**
+     * @return the matriz
+     */
+    public int[][] getMatriz() {
+        return matriz;
+    }
+
+    /**
+     * @param matriz the matriz to set
+     */
+    public void setMatriz(int[][] matriz) {
+        this.matriz = matriz;
+    }
 }
