@@ -28,13 +28,16 @@ public class Main {
          
          imprimirMatriz(miMatriz.matriz,">>>>   Inicializando matriz  <<<<");
         
+        
         miMatriz.generarValoresRandomPorColumna(1);
         miMatriz.generarValoresRandomPorColumna(2);
         //miMatriz.generarValoresRandomPorFila(10);
         imprimirMatriz(miMatriz.matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
+        int total = 0;
+        total =  miMatriz.sumarDosColumnas(1, 2, 3);
 //         // Agregando a columna 3 la suma de la columna 1 y 2
 //         
-//         int total = 0;
+
 //         for (int i = 0; i < 10; i++) {
 //             for (int j = 0; j < 3; j++) {
 //                 if (j == 2){
@@ -45,9 +48,9 @@ public class Main {
 //             }
 //         }
 //         
-//          imprimirMatriz(matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
+      imprimirMatriz(miMatriz.matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
           System.out.println("================================");
-//          System.out.println("El total de la suma es: " + total);
+         System.out.println("El total de la suma es: " + total);
           System.out.println("================================");
      
      // redimensionando matriz
