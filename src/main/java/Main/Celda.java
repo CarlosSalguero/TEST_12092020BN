@@ -26,6 +26,12 @@ public class Celda {
         this.valor = 0;
     }
     
+    public Celda(int valor){
+        this.fila = 0;
+        this.columna = 0;
+        this.valor = valor;
+    }
+    
      public Celda(){
         this.fila = 0;
         this.columna = 0;

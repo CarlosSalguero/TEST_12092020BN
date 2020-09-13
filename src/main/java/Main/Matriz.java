@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Main;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 /**
  *
@@ -35,41 +37,23 @@ public class Matriz {
          }     
     }
     
-   public int sumarDosColumnas(int columna1, int columna2, int columnaResultado){
-   
-        int resultadoSuma = 0;
-        //-----------INICIO -> METODO 2 --------------
-        int [] tmpColumna1 = obtenerColumna(1);
-        int [] tmpColumna2 = obtenerColumna(2);
-        for (int i = 0; i < tmpColumna1.length; i++) {
-           resultadoSuma += this.getMatriz()[i][columnaResultado - 1] = tmpColumna1[i] +tmpColumna2[i];
+   public int sumarColumnas(int[] columnas, int columnaResultado){
+       int resultadoSuma = 0;
+
+        for (int i = 0; i < this.matriz.length; i++) {
+            this.matriz[i][columnaResultado - 1] = 0;
+            for (int j = 0; j < this.matriz[0].length; j++) { 
+                for (int k = 0; k < columnas.length; k++) {
+                    if (j == (columnas[k]-1)){
+                        this.matriz[i][columnaResultado - 1] += this.matriz[i][j];
+                    }
+                }
+            }
+            resultadoSuma += this.matriz[i][columnaResultado - 1];
        }
-       //------------FIN -> METODO 2 -----------------
-       
-       //-----------INICIO -> METODO 1 --------------
-//        for (int i = 0; i < this.matriz.length; i++) {
-//           for (int j = 0; j < this.matriz[0].length; j++) {
-//               if ( j == columnaResultado - 1){
-//                   resultadoSuma += matriz[i][j] = this.matriz[i][columna1-1] + this.matriz[i][columna2-1];
-//               }
-//           }
-//        }
-       //------------FIN -> METODO 1 -----------------
        return resultadoSuma;
    }
-   
-   private int[] obtenerColumna(int columna){
-       int[] tmpcolumna = new int[this.getMatriz().length];
-       
-       for (int i = 0; i < this.getMatriz().length; i++) {
-           for (int j = columna - 1; j < columna; j++) {
-               tmpcolumna[i] = this.getMatriz()[i][j];
-           }
-       }
-       return tmpcolumna;
-   }
-   
-   
+    
    public void agregarFilasAMatriz(int filas){
        int[][] nuevaMatriz = new int[this.getMatriz().length + filas][this.getMatriz()[0].length];
        for (int i = 0; i < this.getMatriz().length; i++) {
@@ -131,6 +115,16 @@ public class Matriz {
     public void eliminarCelda(Celda destino){
         this.matriz[destino.getFila()][destino.getColumna()] = 0;
     }
+    
+    public void copiarValorPorRango(int filaInicio, int filaFin, int columnaInicio, int columnaFin, int valor){
+        for (int i = filaInicio - 1; i < filaFin; i++) {
+            for (int j = columnaInicio - 1; j < columnaFin; j++) {
+                this.matriz[i][j] = valor;
+            }
+        }
+    }
+    
+
     /**
      * @return the matriz
      */

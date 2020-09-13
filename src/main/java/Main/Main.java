@@ -35,7 +35,8 @@ public class Main {
         // Creando variable total
         int total = 0;
         // Realizando la suma de columna 1 y 2, resultado se almacena en columna 3
-        total =  miMatriz.sumarDosColumnas(1, 2, 3);
+        int [] columnas = new int[]{1,2};
+        total =  miMatriz.sumarColumnas(columnas, 3);
         
         miMatriz.imprimirMatriz("Agregando a columna 3 la suma de la columna 1 y 2");
         System.out.println("================================");
@@ -65,7 +66,7 @@ public class Main {
         miMatriz.copiarCelda(origen1, destino1);
         //Copiando Celdas (2,1) a (12,1)
         miMatriz.copiarCelda(origen2, destino2);
-        miMatriz.imprimirMatriz("Se copian celdas ((1,1)(2,1)) -> ((11,1),(12,1))");
+        miMatriz.imprimirMatriz("Se copian valores (fila 1, fila 2) columna 1 hacia fila 11 y 12 columna 1");
                
         //=== Calcular el total de las filas 1 y 2 columna 2
         
@@ -78,34 +79,31 @@ public class Main {
         
         total = opera1.getValor() + opera2.getValor();
         System.out.println("================================");
-        System.out.println("La suma de las celdas (1,2) y (2,2) es: " + total);
+        System.out.println("La suma de la fila 1, fila 2 (columna 2) es: " + total);
         System.out.println("================================");
-     }
-     
-     
-//     public int[][] copiarCelda(){
-//         
-//         
-//     }
-     
-     public int[][] redimensionarMatriz(int[][] matriz,int filas, int columnas){
-         int[][] nuevaMatriz = new int[filas][columnas];
+        
+        // === Eliminar  valores de la fila 1,2 columna 2
+        // celda (1,2)
+        Celda eliminar1 = new Celda(1,2);
+        miMatriz.eliminarCelda(eliminar1);
+        // celda (2,2)
+        Celda eliminar2 = new Celda(2,2);
+        miMatriz.eliminarCelda(eliminar2);
+        miMatriz.imprimirMatriz("Se eliminan fila 1, fila 2 (columna 2)");
+        
+        // Dividir el total del inciso anterior y colocar en partes iguales en la fila 3 a 7 columna 4
+        int valorMitad = total/2;
+        miMatriz.copiarValorPorRango(3, 7, 4, 4, valorMitad);
+        miMatriz.imprimirMatriz(" Dividir el total del inciso anterior y colocar en partes iguales en la fila 3 a 7 columna 4");
+        
+        //llenar la columna 3 con la suma de las columnas 1, 2 y 4
+        columnas = new int[]{1,2,4};
+        total =  miMatriz.sumarColumnas(columnas, 3);
+        miMatriz.imprimirMatriz("llenar la columna 3 con la suma de las columnas 1, 2 y 4");
          
-         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];
-            }
-        }
-         return nuevaMatriz;
-     }
-     
-     public int[][] inicializarMatriz(int[][] matriz, int filas, int columnas){
-          for (int i = 0; i < filas ; i++) {
-             for (int j = 0; j < columnas; j++) {
-                  matriz[i][j] = 0;                
-             }
-         } 
-          return matriz;
+        System.out.println("================================");
+        System.out.println("La suma de los valores de la columna 3 es: " + total);
+        System.out.println("================================");
      }
      
 
