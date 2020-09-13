@@ -37,9 +37,8 @@ public class Matriz {
          }     
     }
     
-   public int sumarColumnas(int[] columnas, int columnaResultado){
-       int resultadoSuma = 0;
-
+   public void sumarColumnas(int[] columnas, int columnaResultado){
+       
         for (int i = 0; i < this.matriz.length; i++) {
             this.matriz[i][columnaResultado - 1] = 0;
             for (int j = 0; j < this.matriz[0].length; j++) { 
@@ -49,11 +48,31 @@ public class Matriz {
                     }
                 }
             }
-            resultadoSuma += this.matriz[i][columnaResultado - 1];
        }
-       return resultadoSuma;
    }
-    
+  
+   
+   public int sumarValoresDeColumna(int columna){
+       int suma = 0;
+       int[] tmpcolumna = obtenerColumna(columna);
+       for (int i = 0; i < tmpcolumna.length; i++) {
+           suma += tmpcolumna[i];
+       }
+       return suma;
+   }
+   
+   private int[] obtenerColumna(int columna){
+       int[] tmpcolumna = new int[this.getMatriz().length];
+       
+       for (int i = 0; i < this.getMatriz().length; i++) {
+           for (int j = columna - 1; j < columna; j++) {
+               tmpcolumna[i] = this.matriz[i][j];
+           }
+       }
+       return tmpcolumna;
+   }
+   
+   
    public void agregarFilasAMatriz(int filas){
        int[][] nuevaMatriz = new int[this.getMatriz().length + filas][this.getMatriz()[0].length];
        for (int i = 0; i < this.getMatriz().length; i++) {
