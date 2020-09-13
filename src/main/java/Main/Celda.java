@@ -15,14 +15,14 @@ public class Celda {
     private int valor;
     
     public Celda(int fila, int columna, int valor){
-        this.fila = fila;
-        this.columna = columna;
+        this.fila = fila - 1;
+        this.columna = columna - 1;
         this.valor = valor;
     }
     
     public Celda(int fila, int columna){
-        this.fila = fila;
-        this.columna = columna;
+        this.fila = fila - 1;
+        this.columna = columna - 1;
         this.valor = 0;
     }
     

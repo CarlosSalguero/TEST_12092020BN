@@ -120,8 +120,7 @@ public class Matriz {
     
     public Celda obtenerCelda(int fila, int columna){
         Celda celda = new Celda(fila, columna);
-        celda.setValor(this.matriz[fila][columna]);
-        
+        celda.setValor(this.matriz[fila - 1][columna - 1]);        
         return celda;
     }
     
@@ -129,6 +128,9 @@ public class Matriz {
         this.matriz[destino.getFila()][destino.getColumna()] = origen.getValor();
     }
 
+    public void eliminarCelda(Celda destino){
+        this.matriz[destino.getFila()][destino.getColumna()] = 0;
+    }
     /**
      * @return the matriz
      */

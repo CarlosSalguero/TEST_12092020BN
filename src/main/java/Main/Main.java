@@ -31,37 +31,55 @@ public class Main {
         miMatriz.generarValoresRandomColumna(1);
         miMatriz.generarValoresRandomColumna(2);
 
-        //imprimirMatriz(miMatriz.matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
         miMatriz.imprimirMatriz("Agregando datos predeterminados a columna 1 y 2");
+        // Creando variable total
         int total = 0;
+        // Realizando la suma de columna 1 y 2, resultado se almacena en columna 3
         total =  miMatriz.sumarDosColumnas(1, 2, 3);
-//         // Agregando a columna 3 la suma de la columna 1 y 2
-//         
-
-//         for (int i = 0; i < 10; i++) {
-//             for (int j = 0; j < 3; j++) {
-//                 if (j == 2){
-//                     
-//                    total += matriz[i][j] = matriz[i][j-2] + matriz[i][j-1];
-//                    
-//                 }           
-//             }
-//         }
-//         
-      //imprimirMatriz(miMatriz.matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
+        
         miMatriz.imprimirMatriz("Agregando a columna 3 la suma de la columna 1 y 2");
         System.out.println("================================");
-        System.out.println("El total de la suma de columna 3 es: " + total);
+        System.out.println("La suma de los valores de la columna 3 es: " + total);
         System.out.println("================================");
      
      // redimensionando matriz
         miMatriz.agregarFilasAMatriz(2);
-        //imprimirMatriz(miMatriz.matriz,">>>>  Se redimensiona matriz, se agregan 2 filas vacias  <<<<");
         miMatriz.imprimirMatriz("Se redimensiona matriz, se agregan 2 filas vacias");
         miMatriz.agregarColumnasAMatriz(1);
-        //imprimirMatriz(miMatriz.matriz,">>>>  Se redimensiona matriz, se agregan 1 columna  <<<<");
         miMatriz.imprimirMatriz("Se redimensiona matriz, se agrega 1 columna vacia");
-     
+        
+        // Trasladando los valores de fila 1 y 2 [columna 1] hacia las nuevas filas 
+        Celda origen1 = new Celda();
+        Celda origen2 = new Celda();
+        
+        // celda (1,1)
+        origen1 = miMatriz.obtenerCelda(1,1);
+        // celda (2,1)
+        origen2 = miMatriz.obtenerCelda(2,1);
+        // Celdas Destino (11,1)
+        Celda destino1 = new Celda(11,1);
+        // Celdas Destino (12,1)
+        Celda destino2 = new Celda(12,1);
+        
+        //Copiando Celdas (1,1) a (11,1)
+        miMatriz.copiarCelda(origen1, destino1);
+        //Copiando Celdas (2,1) a (12,1)
+        miMatriz.copiarCelda(origen2, destino2);
+        miMatriz.imprimirMatriz("Se copian celdas ((1,1)(2,1)) -> ((11,1),(12,1))");
+               
+        //=== Calcular el total de las filas 1 y 2 columna 2
+        
+        Celda opera1 = new Celda();
+        Celda opera2 = new Celda();
+        //Obteniendo fila (1,2)
+        opera1 = miMatriz.obtenerCelda(1,2);
+        //Obteniendo fila (2,2)
+        opera2 = miMatriz.obtenerCelda(2,2);
+        
+        total = opera1.getValor() + opera2.getValor();
+        System.out.println("================================");
+        System.out.println("La suma de las celdas (1,2) y (2,2) es: " + total);
+        System.out.println("================================");
      }
      
      
