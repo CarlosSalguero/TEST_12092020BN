@@ -22,52 +22,61 @@ public class Main {
      
      public void funcion(){
          // Matriz 10x3
-         int matriz[][] = new int[10][3];
+         //int matriz[][] = new int[10][3];
          System.out.println("Se crea matriz de 10x3 y se inicializa");
+         Matriz miMatriz = new Matriz(10,3);
          
-         matriz = inicializarMatriz(matriz, 10, 3);
-         imprimirMatriz(matriz,">>>>   Inicializando matriz  <<<<");
-         
-         // Agregando datos aletatorios a columna 1 y 2
-         //Random random = new Random();
-         for (int i = 0; i < 10; i++) {
-             for (int j = 0; j < 3; j++) {
-                 if (j < 2){
-                    matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);
-                 }else
-                 {
-                      matriz[i][j] = 0;
-                 }                
-             }
-         }
-         imprimirMatriz(matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
-         // Agregando a columna 3 la suma de la columna 1 y 2
-         
-         int total = 0;
-         for (int i = 0; i < 10; i++) {
-             for (int j = 0; j < 3; j++) {
-                 if (j == 2){
-                     
-                    total += matriz[i][j] = matriz[i][j-2] + matriz[i][j-1];
-                    
-                 }           
-             }
-         }
-         
-          imprimirMatriz(matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
+         imprimirMatriz(miMatriz.matriz,">>>>   Inicializando matriz  <<<<");
+        
+        miMatriz.generarValoresRandomPorColumna(1);
+        miMatriz.generarValoresRandomPorColumna(2);
+        //miMatriz.generarValoresRandomPorFila(10);
+        imprimirMatriz(miMatriz.matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
+//         // Agregando a columna 3 la suma de la columna 1 y 2
+//         
+//         int total = 0;
+//         for (int i = 0; i < 10; i++) {
+//             for (int j = 0; j < 3; j++) {
+//                 if (j == 2){
+//                     
+//                    total += matriz[i][j] = matriz[i][j-2] + matriz[i][j-1];
+//                    
+//                 }           
+//             }
+//         }
+//         
+//          imprimirMatriz(matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
           System.out.println("================================");
-          System.out.println("El total de la suma es: " + total);
+//          System.out.println("El total de la suma es: " + total);
           System.out.println("================================");
      
      // redimensionando matriz
      
-//     int matriz2[][] = new int[12][3];
-//     
-//        matriz2 = matriz.clone();
-//      imprimirMatriz(matriz2,">>>>  imprimiendo matriz 2  <<<<");
+        
+//        matriz = redimensionarMatriz(matriz, 12, 3);
+//        imprimirMatriz(matriz,">>>>  Se redimensiona matriz, se agregan 2 filas nuevas  <<<<");
+//        matriz = redimensionarMatriz(matriz, 12, 4);
+//        imprimirMatriz(matriz,">>>>  Se redimensiona matriz, se agregan 1 columna  <<<<");
 //     
      
      
+     }
+     
+     
+//     public int[][] copiarCelda(){
+//         
+//         
+//     }
+     
+     public int[][] redimensionarMatriz(int[][] matriz,int filas, int columnas){
+         int[][] nuevaMatriz = new int[filas][columnas];
+         
+         for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                nuevaMatriz[i][j] = matriz[i][j];
+            }
+        }
+         return nuevaMatriz;
      }
      
      public int[][] inicializarMatriz(int[][] matriz, int filas, int columnas){
@@ -82,11 +91,11 @@ public class Main {
      public void imprimirMatriz(int[][] matriz, String mensaje){
          // imprimir matriz
          System.out.println(mensaje);
-         for (int i = 0; i < 10; i++) {
+         for (int i = 0; i < matriz.length; i++) {
              System.out.print("[");
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < matriz[0].length; j++) {
                 System.out.print(matriz[i][j]);
-                if(j < 2){
+                if(j < matriz[0].length - 1){
                     System.out.print(",");
                 }else
                 {
