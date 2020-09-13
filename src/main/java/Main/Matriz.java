@@ -19,7 +19,7 @@ public class Matriz {
     }
     
     
-    public void generarValoresRandomPorColumna(int columna){      
+    public void generarValoresRandomColumna(int columna){      
          for (int i = 0 ; i < this.matriz.length; i++) {
              for (int j = columna - 1 ; j < columna; j++) {               
                     this.matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 9 + 1);                           
@@ -68,4 +68,53 @@ public class Matriz {
        }
        return tmpcolumna;
    }
+   
+   
+   public void agregarFilasAMatriz(int filas){
+       int[][] nuevaMatriz = new int[this.matriz.length + filas][this.matriz[0].length];
+       for (int i = 0; i < this.matriz.length; i++) {
+            for (int j = 0; j < this.matriz[0].length; j++) {
+                nuevaMatriz[i][j] = matriz[i][j];
+            }
+        }     
+       this.matriz = nuevaMatriz;
+   }
+   
+   public void agregarColumnasAMatriz(int columnas){
+       int[][] nuevaMatriz = new int[this.matriz.length][this.matriz[0].length + columnas];
+       for (int i = 0; i < this.matriz.length; i++) {
+            for (int j = 0; j < this.matriz[0].length; j++) {
+                nuevaMatriz[i][j] = matriz[i][j];
+            }
+        }     
+       this.matriz = nuevaMatriz;
+   }
+   
+    public void redimensionarMatriz(int filas, int columnas){
+         int[][] nuevaMatriz = new int[filas][columnas];
+         
+         for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                nuevaMatriz[i][j] = matriz[i][j];
+            }
+        }
+        // return nuevaMatriz;
+     }
+    
+    public void imprimirMatriz(String mensaje){
+         System.out.println(">>>>>>>>   " +mensaje + "   <<<<<<<<");
+         for (int i = 0; i < this.matriz.length; i++) {
+             System.out.print("[");
+            for (int j = 0; j < this.matriz[0].length; j++) {
+                System.out.print(this.matriz[i][j]);
+                if(j < this.matriz[0].length - 1){
+                    System.out.print(",");
+                }else
+                {
+                    System.out.print("]");
+                }
+            }
+            System.out.println("");
+        }
+     }
 }

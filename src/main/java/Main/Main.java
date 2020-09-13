@@ -21,18 +21,18 @@ public class Main {
     }
      
      public void funcion(){
-         // Matriz 10x3
-         //int matriz[][] = new int[10][3];
+
          System.out.println("Se crea matriz de 10x3 y se inicializa");
          Matriz miMatriz = new Matriz(10,3);
          
-         imprimirMatriz(miMatriz.matriz,">>>>   Inicializando matriz  <<<<");
+         //imprimirMatriz(miMatriz.matriz,">>>>   Inicializando matriz  <<<<");
         
-        
-        miMatriz.generarValoresRandomPorColumna(1);
-        miMatriz.generarValoresRandomPorColumna(2);
-        //miMatriz.generarValoresRandomPorFila(10);
-        imprimirMatriz(miMatriz.matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
+        // Agregando datos predeterminados a columnas 1 y 2 
+        miMatriz.generarValoresRandomColumna(1);
+        miMatriz.generarValoresRandomColumna(2);
+
+        //imprimirMatriz(miMatriz.matriz,">>>>   Agregando datos predeterminados a columna 1 y 2   <<<<");
+        miMatriz.imprimirMatriz("Agregando datos predeterminados a columna 1 y 2");
         int total = 0;
         total =  miMatriz.sumarDosColumnas(1, 2, 3);
 //         // Agregando a columna 3 la suma de la columna 1 y 2
@@ -48,20 +48,19 @@ public class Main {
 //             }
 //         }
 //         
-      imprimirMatriz(miMatriz.matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
-          System.out.println("================================");
-         System.out.println("El total de la suma es: " + total);
-          System.out.println("================================");
+      //imprimirMatriz(miMatriz.matriz,">>>>   Agregando a columna 3 la suma de la columna 1 y 2   <<<<");
+        miMatriz.imprimirMatriz("Agregando a columna 3 la suma de la columna 1 y 2");
+        System.out.println("================================");
+        System.out.println("El total de la suma de columna 3 es: " + total);
+        System.out.println("================================");
      
      // redimensionando matriz
-     
-        
-//        matriz = redimensionarMatriz(matriz, 12, 3);
-//        imprimirMatriz(matriz,">>>>  Se redimensiona matriz, se agregan 2 filas nuevas  <<<<");
-//        matriz = redimensionarMatriz(matriz, 12, 4);
-//        imprimirMatriz(matriz,">>>>  Se redimensiona matriz, se agregan 1 columna  <<<<");
-//     
-     
+        miMatriz.agregarFilasAMatriz(2);
+        //imprimirMatriz(miMatriz.matriz,">>>>  Se redimensiona matriz, se agregan 2 filas vacias  <<<<");
+        miMatriz.imprimirMatriz("Se redimensiona matriz, se agregan 2 filas vacias");
+        miMatriz.agregarColumnasAMatriz(1);
+        //imprimirMatriz(miMatriz.matriz,">>>>  Se redimensiona matriz, se agregan 1 columna  <<<<");
+        miMatriz.imprimirMatriz("Se redimensiona matriz, se agregan 1 columna");
      
      }
      
@@ -91,21 +90,5 @@ public class Main {
           return matriz;
      }
      
-     public void imprimirMatriz(int[][] matriz, String mensaje){
-         // imprimir matriz
-         System.out.println(mensaje);
-         for (int i = 0; i < matriz.length; i++) {
-             System.out.print("[");
-            for (int j = 0; j < matriz[0].length; j++) {
-                System.out.print(matriz[i][j]);
-                if(j < matriz[0].length - 1){
-                    System.out.print(",");
-                }else
-                {
-                    System.out.print("]");
-                }
-            }
-            System.out.println("");
-        }
-     }
+
 }
