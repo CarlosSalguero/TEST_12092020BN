@@ -60,7 +60,7 @@ public class Main {
         miMatriz.imprimirMatriz("Se redimensiona matriz, se agregan 2 filas vacias");
         miMatriz.agregarColumnasAMatriz(1);
         //imprimirMatriz(miMatriz.matriz,">>>>  Se redimensiona matriz, se agregan 1 columna  <<<<");
-        miMatriz.imprimirMatriz("Se redimensiona matriz, se agregan 1 columna");
+        miMatriz.imprimirMatriz("Se redimensiona matriz, se agrega 1 columna vacia");
      
      }
      
